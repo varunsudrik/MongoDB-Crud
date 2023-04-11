@@ -28,12 +28,31 @@ const collection = mongoose.model("collection", newSchema);
 // create document object
 
 const newDoc = async () => {
-  const mydoc = new collection({
-    name: "shubham",
+  const reactPlaylist = new collection({
+    name: "react",
     age: 24,
     member: true,
   });
-  await mydoc.save();
+  const nodePlaylist = new collection({
+    name: "node",
+    age: 24,
+    member: true,
+  });
+  const mongoPlaylist = new collection({
+    name: "mongo",
+    age: 24,
+    member: true,
+  });
+  await collection.insertMany([reactPlaylist, nodePlaylist, mongoPlaylist]);
 };
 
-newDoc();
+//Function call for creation
+//newDoc();
+
+// function to read collection
+const getDocument = async () => {
+  const result = await collection.find();
+  console.log(result);
+};
+
+getDocument();
